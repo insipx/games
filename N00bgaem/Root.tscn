@@ -17,18 +17,16 @@ size = Vector3( 30, 2, 30 )
 transform = Transform( 0.999988, 0, -0.00486945, 0, 1, 0, 0.00486945, 0, 0.999988, -0.0146894, 0, -0.034523 )
 
 [node name="DaBox" type="RigidBody" parent="."]
-transform = Transform( 0.476936, -0.799611, 0.364904, 0.836001, 0.540869, 0.0925336, -0.271356, 0.260928, 0.926436, -0.00285432, 8.80841, -0.00929049 )
+transform = Transform( 0.476936, -0.799611, 0.364904, 0.836001, 0.540869, 0.0925336, -0.271356, 0.260928, 0.926436, 5.98547, 8.80841, -0.0384507 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DaBox"]
+transform = Transform( 1, 0, 0, -7.45058e-09, 1, 0, 2.98023e-08, -4.47035e-08, 1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="DaBox"]
+transform = Transform( 0.999999, 2.98023e-08, -1.49012e-08, 1.11759e-07, 1, -1.78814e-07, 1.63913e-07, -1.93715e-07, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.766044, -0.633022, 0.111619, 0, 0.173648, 0.984808, -0.642788, -0.754407, 0.133022, 2.71061, 11.5135, 3.28612 )
-fov = 73.7718
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999988, -1, -0.00486945 )
@@ -42,3 +40,7 @@ material/0 = null
 
 [node name="SomeDude" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, -4.65661e-10, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0.212188, 4.3873, 8.0229 )
+fov = 75.0
