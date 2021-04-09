@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/SomeDude.tscn" type="PackedScene" id=1]
+[ext_resource path="res://code/SomeDude.gdns" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 15, 1, 15 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 30, 2, 30 )
+
+[node name="Root" type="Spatial"]
+transform = Transform( 0.999988, 0, -0.00486945, 0, 1, 0, 0.00486945, 0, 0.999988, -0.0146894, 0, -0.034523 )
+
+[node name="DaBox" type="RigidBody" parent="."]
+transform = Transform( 0.476936, -0.799611, 0.364904, 0.836001, 0.540869, 0.0925336, -0.271356, 0.260928, 0.926436, -0.00285432, 8.80841, -0.00929049 )
+
+[node name="CollisionShape" type="CollisionShape" parent="DaBox"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="DaBox"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.766044, -0.633022, 0.111619, 0, 0.173648, 0.984808, -0.642788, -0.754407, 0.133022, 2.71061, 11.5135, 3.28612 )
+fov = 73.7718
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999988, -1, -0.00486945 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor/CollisionShape"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="SomeDude" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 2 )
