@@ -22,16 +22,13 @@ pkgs.mkShell {
   buildInputs = [
     openssl
     pkgconfig
-    nasm
     rust
     unstable.cargo-expand
     # unstable.rustracer
     unstable.cargo-edit
     unstable.cargo-udeps
     cmake
-    zlib
     python3
-    # llvmPackages.clang-unwrapped
     clang
     llvmPackages.libclang
     libbfd
@@ -40,7 +37,6 @@ pkgs.mkShell {
     autoconf
     automake
     libtool
-    postgresql
     wasm-pack
     alsaLib
     xlibs.libX11
