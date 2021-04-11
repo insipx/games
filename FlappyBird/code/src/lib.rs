@@ -1,7 +1,12 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
+use gdnative::prelude::*;
+
+mod player;
+
+fn init(handle: InitHandle) {
+    handle.add_class::<player::Player>();
 }
+
+godot_init!(init);
+
+
+
