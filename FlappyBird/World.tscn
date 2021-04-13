@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player.gdns" type="Script" id=1]
+[ext_resource path="res://Walls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/flappy_sprite.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.5, 8.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24, 312 )
+
+[node name="World" type="Node2D"]
+
+[node name="PlayerNode" type="Node2D" parent="."]
+position = Vector2( -104, 0 )
+
+[node name="Player" type="KinematicBody2D" parent="PlayerNode"]
+position = Vector2( 50, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="PlayerNode/Player"]
+texture = ExtResource( 3 )
+
+[node name="Hitbox" type="Area2D" parent="PlayerNode/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Hitbox"]
+shape = SubResource( 2 )
+
+[node name="Reset" type="Area2D" parent="PlayerNode/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Reset"]
+position = Vector2( -282, 0 )
+shape = SubResource( 3 )
+
+[node name="WallNode" parent="." instance=ExtResource( 2 )]
+position = Vector2( 272, -40 )
+
+[node name="WallNode2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 496, 24 )
+
+[node name="WallNode3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 720, -40 )
+
+[node name="WallNode4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 944, 40 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 0.5, 1 )
+[connection signal="body_entered" from="PlayerNode/Player/Reset" to="PlayerNode/Player" method="_on_Reset_body_entered"]

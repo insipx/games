@@ -5,6 +5,6 @@ entry/X11.64 = "res://code/target/release/libcode.so"
 dependency/X11.64 = [  ]
 
 [resource]
-resource_name = "Player"
-class_name = "Player"
+resource_name = "Walls"
+class_name = "Walls"
 library = SubResource( 1 )

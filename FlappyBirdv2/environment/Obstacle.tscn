@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://environment/MovingWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://environment/Obstacle.gdns" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 99.0063 )
+
+[node name="Obstacle" type="Node2D"]
+position = Vector2( 0, 427 )
+script = ExtResource( 2 )
+
+[node name="BottomWall" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 80 )
+
+[node name="TopWall" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -80 )
+rotation = 3.14159
+
+[node name="ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="BottomWall" to="." method="_on_wall_body_entered"]
+[connection signal="body_entered" from="TopWall" to="." method="_on_wall_body_entered"]
+[connection signal="body_exited" from="ScoreArea" to="." method="_on_score_area_body_exited"]
