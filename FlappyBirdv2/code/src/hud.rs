@@ -24,7 +24,6 @@ impl Hud {
     fn update_score(&mut self, owner: &CanvasLayer) {
         godot_print!("UPDATING SCORE");
         self.score += 1;
-        godot_print!("here1");
         let score_label = unsafe {
             owner.get_node_as::<Label>("Score").expect("Could not get node as label")
         };

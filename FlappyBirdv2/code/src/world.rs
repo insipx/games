@@ -1,5 +1,6 @@
 use gdnative::prelude::*;
 use gdnative::api::object::ConnectFlags;
+use crate::obstacle::Obstacle;
 
 #[derive(NativeClass, Default)]
 #[inherit(Node2D)]
@@ -31,13 +32,23 @@ impl World {
     }
 
     #[export]
-    fn update_score(&mut self, _owner: &Node2D, score: i32) {
-        godot_print!("Updating Score to: {}", score);
+    fn update_score(&mut self, owner: &Node2D) {
+        self.score  += 1;
+        godot_print!("Updating Score to: {}", self.score);
     }
 
     #[export]
-    fn on_obstacle_created(&mut self, _owner: &Node2D, _obstacle: Variant) {
-        // need to downcast `Variant` to `Obstacle` type.
-        godot_print!("CREATED");
+    fn on_obstacle_created(&mut self, owner: TRef<Node2D>, obstacle: Variant) {
+        let obstacle = Ref::<Node2D, Shared>::from_variant(&obstacle).unwrap();
+        let obstacle = unsafe { obstacle.assume_safe() };
+
+        let hud = &mut owner.get_node("./Hud").unwrap();
+        let hud = unsafe { hud.assume_safe() };
+        obstacle.connect("score",
+                         hud,
+                         "update_score",
+                         Default::default(),
+                         ConnectFlags::DEFERRED.into()
+        ).unwrap();
     }
 }

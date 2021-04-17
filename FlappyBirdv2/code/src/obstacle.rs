@@ -3,7 +3,7 @@ use gdnative::api::{PhysicsBody2D, Node};
 
 const SPEED: f32 = 215.0;
 
-#[derive(NativeClass, Default)]
+#[derive(NativeClass, FromVariant, Default)]
 #[inherit(Node2D)]
 #[register_with(Self::register_signals)]
 pub struct Obstacle {
@@ -56,7 +56,7 @@ impl Obstacle {
             TRef::upcast::<Node>(&body.assume_safe())
         };
         if collision.name() == "Player".into() {
-            owner.emit_signal("score", Default::default());
+            owner.emit_signal("score", &[]);
         }
     }
 }
