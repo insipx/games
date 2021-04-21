@@ -1,12 +1,9 @@
 use gdnative::prelude::*;
 use gdnative::api::object::ConnectFlags;
-use crate::obstacle::Obstacle;
 
 #[derive(NativeClass, Default)]
 #[inherit(Node2D)]
-pub struct World {
-    score: i32
-}
+pub struct World;
 
 #[methods]
 impl World {
@@ -25,16 +22,6 @@ impl World {
                         Default::default(),
                         ConnectFlags::DEFERRED.into()
         ).unwrap();
-        // let subscriber = unsafe { owner.get_node_as::<CanvasLayer>("Hud").unwrap() };
-        /* emitter.connect("score", subscriber, "update_score", VariantArray::new_shared(), 0)
-               .unwrap();
-        */
-    }
-
-    #[export]
-    fn update_score(&mut self, owner: &Node2D) {
-        self.score  += 1;
-        godot_print!("Updating Score to: {}", self.score);
     }
 
     #[export]
